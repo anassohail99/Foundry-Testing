@@ -25,4 +25,13 @@ contract StakeContractTest is Test {
         bool success = stakeContract.stake(AMOUNT,address(tokenContract));
         assertTrue(success);
     }
+
+    // fuzz test
+    // send random data to our function
+
+    function testFuzzStakingToken(uint16 _amount) public {
+        tokenContract.approve(address(stakeContract), _amount);
+        bool success = stakeContract.stake(_amount,address(tokenContract));
+        assertTrue(success);
+    }
 }
